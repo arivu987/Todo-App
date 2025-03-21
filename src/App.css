@@ -1,38 +1,213 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.todo-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  overflow: hidden;
+}
+
+h1 {
+  color: #5a67d8;
   text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input-container {
+  display: flex;
+  margin-bottom: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.todo-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px 0 0 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 2px rgba(90, 103, 216, 0.2);
+}
+
+.add-button {
+  background-color: #5a67d8;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #4c51bf;
+  transform: translateY(-2px);
+}
+
+.todo-list {
+  list-style-type: none;
+}
+
+.todo-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  animation: slideIn 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todo-item.completed {
+  background-color: #f7fafc;
+  opacity: 0.8;
+}
+
+.todo-text {
+  flex: 1;
+  margin-right: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.completed .todo-text {
+  text-decoration: line-through;
+  color: #a0aec0;
+}
+
+.todo-actions {
   display: flex;
-  flex-direction: column;
+  gap: 8px;
+}
+
+.complete-button,
+.edit-button,
+.delete-button {
+  border: none;
+  border-radius: 5px;
+  width: 36px;
+  height: 36px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.complete-button {
+  background-color: #48bb78;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.complete-button.completed {
+  background-color: #e2e8f0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.edit-button {
+  background-color: #4299e1;
+  color: white;
+}
+
+.delete-button {
+  background-color: #f56565;
+  color: white;
+}
+
+.complete-button:hover,
+.edit-button:hover,
+.delete-button:hover {
+  transform: scale(1.1);
+}
+
+.edit-container {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.save-button {
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #3182ce;
+}
+
+.empty-message {
+  text-align: center;
+  color: #a0aec0;
+  padding: 20px;
+  font-style: italic;
+}
+
+.loading-spinner {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 20px auto;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #5a67d8;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
